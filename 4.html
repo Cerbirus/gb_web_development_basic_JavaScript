@@ -30,12 +30,10 @@
   <script>
     "use strict";
 
-    let number = "";
+    const number = prompt('Введите произвольное положительное число:', 0);
     let number_1 = 0;
     let number_10 = 0;
     let number_100 = 0;
-
-    number = prompt('Введите произвольное положительное число:', 0);
 
     if (number.length > 0) { number_1 = number.substr(-1, 1); }
     if (number.length > 1) { number_10 = number.substr(-2, 1); }
@@ -44,6 +42,12 @@
     console.log(`В числе ${number} количество сотен: ${number_100}, десятков: ${number_10}, единиц: ${number_1}`);
 
     // Но можно было сделать математическими операциями, посчитал что так будет проще и красивше. :)
+
+    const number2_1 = number % 10;
+    const number2_10 = Math.trunc(number / 10) % 10;
+    const number2_100 = Math.trunc(number / 100) % 10;
+
+    console.log(`В числе ${number} количество сотен: ${number2_100}, десятков: ${number2_10}, единиц: ${number2_1}`);
 
   </script>
 </body>

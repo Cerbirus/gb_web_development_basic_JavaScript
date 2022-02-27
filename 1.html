@@ -24,16 +24,10 @@
   <script>
     "use strict";
 
-    let degreesСelsius = 0;
-    let degreesFahrenheit = 0;
+    const degreesСelsius = +prompt('Введите температуру в градусах Цельсия:', 0);;
+    const degreesFahrenheit = (9 / 5) * degreesСelsius + 32;
 
-    degreesСelsius = prompt('Введите температуру в градусах Цельсия:', 0);
-    if (degreesСelsius == "") {
-      degreesСelsius = 0;
-    }
-    degreesFahrenheit = ((9 / 5) * degreesСelsius + 32).toFixed(2);
-
-    alert(`Цельсий: ${degreesСelsius}\u00B0, Фаренгейт: ${degreesFahrenheit}\u00B0`);
+    alert(`Цельсий: ${degreesСelsius}\u00B0, Фаренгейт: ${degreesFahrenheit.toFixed(2)}\u00B0`);
 
   </script>
 </body>
