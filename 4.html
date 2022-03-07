@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо реализовать четыре функции, каждая функция должна принимать по два
+числа и выполнять одну из операций (каждая функция выполняет одну из них):
+1. Сложение
+2. Разность
+3. Умножение
+4. Деление
+
+Необходимо сделать так, чтобы функция вернула число, например выражение
+`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
+сложения в данном примере, ваши названия функций могут отличаться).
+
+Округлять значения, которые возвращают функции не нужно, однако, обратите
+внимание на разность, функция должна вычесть из большего числа меньшее, либо
+вернуть 0, если числа равны.
+
+Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
+не нужно.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+  <script>
+    "use strict";
+
+    console.log(sum(2, 6));
+    console.log(diff(2, 6));
+    console.log(mult(2, 6));
+    console.log(div(2, 6));
+
+    /**
+    * @author AndreyPozdnyakov
+    * @description Сложение двух чисел
+    * @param {number} a - Первое число
+    * @param {number} b - Второе число
+    * @returns {number} - Результат сложения двух чисел a и b
+    */
+    function sum(a, b) {
+      return a + b;
+    }
+
+    /**
+    * @author AndreyPozdnyakov
+    * @description Разность двух чисел
+    * @param {number} a - Первое число
+    * @param {number} b - Второе число
+    * @returns {number} - Результат разности двух чисел a и b по модулю
+    */
+    function diff(a, b) {
+      if (a < b) {
+        return b - a;
+      }
+      return a - b;
+    }
+
+    /**
+    * @author AndreyPozdnyakov
+    * @description Умножение двух чисел
+    * @param {number} a - Первое число
+    * @param {number} b - Второе число
+    * @returns {number} - Результат умножения двух чисел a и b
+    */
+    function mult(a, b) {
+      return a * b;
+    }
+
+    /**
+    * @author AndreyPozdnyakov
+    * @description Деление двух чисел
+    * @param {number} a - Первое число
+    * @param {number} b - Второе число
+    * @returns {number} - Результат деления двух чисел a и b
+    */
+    function div(a, b) {
+      return a / b;
+    }
+
+  </script>
+</body>
+
+</html>
