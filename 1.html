@@ -22,13 +22,13 @@
     "use strict";
 
     for (let i = 0; i < 11; i++) {
-      console.log(`${i} - ${checkParity(i)}`)
-    };
+      console.log(`${i} - ${checkParity(i)}`);
+    }
 
     /**
     * @description - Проверяет число на четность
-    * @param {Number} number - Проверяемое число
-    * @returns {String} - Результат проверки в виде: 
+    * @param {number} number - Проверяемое число
+    * @returns {string} - Результат проверки в виде: 
                         это ноль
                         нечетное число
                         четное число
@@ -38,7 +38,7 @@
         return "это ноль";
       } else if (number % 2 === 0) {
         return "четное число";
-      } else if (number % 2 === 1) {
+      } else {
         return "нечетное число";
       }
     };
