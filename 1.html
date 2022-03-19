@@ -10,38 +10,59 @@
   <!--
 Обязательное задание.
 
-Необходимо с помощью цикла for вывести следующие 11 строк в консоль:
-0 – это ноль
-1 – нечетное число
-2 – четное число
-3 – нечетное число
-…
-10 – четное число
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
 -->
   <script>
     "use strict";
 
-    for (let i = 0; i < 11; i++) {
-      console.log(`${i} - ${checkParity(i)}`);
+    // -----------------------------------------------------------------
+    // -------------------------- ES5 ----------------------------------
+    // -----------------------------------------------------------------
+
+    function ProductES5(Name, Price) {
+      this.Name = Name;
+      this.Price = Price;
     }
 
-    /**
-    * @description - Проверяет число на четность
-    * @param {number} number - Проверяемое число
-    * @returns {string} - Результат проверки в виде: 
-                        это ноль
-                        нечетное число
-                        четное число
-    */
-    function checkParity(number) {
-      if (number === 0) {
-        return "это ноль";
-      } else if (number % 2 === 0) {
-        return "четное число";
-      } else {
-        return "нечетное число";
+    ProductES5.prototype.make25Discount = function () {
+      this.Price *= 0.75;
+    }
+
+    const productES51 = new ProductES5('Apple', 10);
+
+    console.log(productES51);
+    console.log(productES51.Price);
+    productES51.make25Discount();
+    console.log(productES51.Price);
+
+    // -----------------------------------------------------------------
+    // -------------------------- ES6 ----------------------------------
+    // -----------------------------------------------------------------
+
+    class ProductES6 {
+      constructor(Name, Price) {
+        this.Name = Name;
+        this.Price = Price;
       }
-    };
+
+      make25Discount() {
+        this.Price *= 0.75;
+      }
+    }
+
+    const productES61 = new ProductES6('Apple', 10);
+
+    console.log(productES61);
+    console.log(productES61.Price);
+    productES61.make25Discount();
+    console.log(productES61.Price);
 
   </script>
 </body>
