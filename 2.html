@@ -56,23 +56,23 @@
     // -------------------------- ES5 ----------------------------------
     // -----------------------------------------------------------------
 
-    function User(Name) {
-      this.Name = Name;
+    function User(name) {
+      this.name = name;
     }
 
-    function PostES5(Autor, Text = '') {
-      this.Autor = Autor;
-      this.Text = Text;
-      this.DateTime = new Date();
+    function PostES5(autor, text = '') {
+      this.autor = autor;
+      this.text = text;
+      this.dateTime = new Date();
     }
 
-    PostES5.prototype.edit = function (Text) {
-      this.Text = Text;
-      this.DateTime = new Date();
-    }
+    PostES5.prototype.edit = function (text) {
+      this.text = text;
+      this.dateTime = new Date();
+    };
 
-    function AttachedPostES5(Autor, Text = '') {
-      PostES5.call(this, Autor, Text)
+    function AttachedPostES5(autor, text = '') {
+      PostES5.call(this, autor, text);
       this.highlighted = false;
     }
 
@@ -81,7 +81,8 @@
 
     AttachedPostES5.prototype.makeTextHighlighted = function (highlighted) {
       this.highlighted = highlighted;
-    }
+      this.dateTime = new Date();
+    };
 
     // -----------------------------------------------------------------
     // Проверка объектов
@@ -89,33 +90,33 @@
 
     console.group('--- ES5 ---');
 
-    const user1 = new User('Andrey')
-    const postES51 = new PostES5(user1, 'Hello world!')
+    const user1 = new User('Andrey');
+    const postES51 = new PostES5(user1, 'Hello world!');
     console.log(postES51);
-    console.log(`Autor: ${postES51.Autor.Name};`
-      + `\nText: ${postES51.Text};`
-      + `\nDateTime: ${postES51.DateTime};`);
+    console.log(`autor: ${postES51.autor.name};`
+      + `\ntext: ${postES51.text};`
+      + `\ndateTime: ${postES51.dateTime};`);
 
     postES51.edit('Goodbye');
 
-    console.log(`Autor: ${postES51.Autor.Name};`
-      + `\nText: ${postES51.Text};`
-      + `\nDateTime: ${postES51.DateTime};`);
+    console.log(`autor: ${postES51.autor.name};`
+      + `\ntext: ${postES51.text};`
+      + `\ndateTime: ${postES51.dateTime};`);
 
-    const attachedPostES51 = new AttachedPostES5(user1, 'Hello world! Attached')
+    const attachedPostES51 = new AttachedPostES5(user1, 'Hello world! Attached');
     console.log(attachedPostES51);
-    console.log(`Autor: ${attachedPostES51.Autor.Name};`
-      + `\nText: ${attachedPostES51.Text};`
-      + `\nText: ${attachedPostES51.highlighted};`
-      + `\nDateTime: ${attachedPostES51.DateTime};`);
+    console.log(`autor: ${attachedPostES51.autor.name};`
+      + `\ntext: ${attachedPostES51.text};`
+      + `\ntext: ${attachedPostES51.highlighted};`
+      + `\ndateTime: ${attachedPostES51.dateTime};`);
 
     attachedPostES51.edit('Goodbye AttachedPostES5');
     attachedPostES51.makeTextHighlighted(true);
 
-    console.log(`Autor: ${attachedPostES51.Autor.Name};`
-      + `\nText: ${attachedPostES51.Text};`
-      + `\nText: ${attachedPostES51.highlighted};`
-      + `\nDateTime: ${attachedPostES51.DateTime};`);
+    console.log(`autor: ${attachedPostES51.autor.name};`
+      + `\ntext: ${attachedPostES51.text};`
+      + `\ntext: ${attachedPostES51.highlighted};`
+      + `\ndateTime: ${attachedPostES51.dateTime};`);
 
     console.groupEnd();
 
@@ -124,32 +125,30 @@
     // -----------------------------------------------------------------
 
     class UserES6 {
-      constructor(Name) {
-        this.Name = Name;
+      constructor(name) {
+        this.name = name;
       }
     }
 
     class PostES6 {
-      constructor(Autor, Text = '') {
-        this.Autor = Autor;
-        this.Text = Text;
-        this.DateTime = new Date();
+      constructor(autor, text = '') {
+        this.autor = autor;
+        this.text = text;
+        this.dateTime = new Date();
       }
 
-      edit(Text) {
-        this.Text = Text;
-        this.DateTime = new Date();
+      edit(text) {
+        this.text = text;
+        this.dateTime = new Date();
       }
     }
 
     class AttachedPostES6 extends PostES6 {
-      constructor(Autor, Text = '') {
-        super(Autor, Text)
-        this.highlighted = false;
-      }
+      highlighted = false;
 
       makeTextHighlighted(highlighted) {
         this.highlighted = highlighted;
+        this.dateTime = new Date();
       }
     }
 
@@ -159,33 +158,33 @@
 
     console.group('--- ES6 ---');
 
-    const user2 = new UserES6('Andrey')
-    const postES61 = new PostES6(user2, 'Hello world!')
+    const user2 = new UserES6('Andrey');
+    const postES61 = new PostES6(user2, 'Hello world!');
     console.log(postES61);
-    console.log(`Autor: ${postES61.Autor.Name};`
-      + `\nText: ${postES61.Text};`
-      + `\nDateTime: ${postES61.DateTime};`);
+    console.log(`autor: ${postES61.autor.name};`
+      + `\ntext: ${postES61.text};`
+      + `\ndateTime: ${postES61.dateTime};`);
 
     postES61.edit('Goodbye');
 
-    console.log(`Autor: ${postES61.Autor.Name};`
-      + `\nText: ${postES61.Text};`
-      + `\nDateTime: ${postES61.DateTime};`);
+    console.log(`autor: ${postES61.autor.name};`
+      + `\ntext: ${postES61.text};`
+      + `\ndateTime: ${postES61.dateTime};`);
 
-    const attachedPostES61 = new AttachedPostES6(user1, 'Hello world! Attached')
+    const attachedPostES61 = new AttachedPostES6(user1, 'Hello world! Attached');
     console.log(attachedPostES61);
-    console.log(`Autor: ${attachedPostES61.Autor.Name};`
-      + `\nText: ${attachedPostES61.Text};`
-      + `\nText: ${attachedPostES61.highlighted};`
-      + `\nDateTime: ${attachedPostES61.DateTime};`);
+    console.log(`autor: ${attachedPostES61.autor.name};`
+      + `\ntext: ${attachedPostES61.text};`
+      + `\ntext: ${attachedPostES61.highlighted};`
+      + `\ndateTime: ${attachedPostES61.dateTime};`);
 
     attachedPostES61.edit('Goodbye AttachedPostES5');
     attachedPostES61.makeTextHighlighted(true);
 
-    console.log(`Autor: ${attachedPostES61.Autor.Name};`
-      + `\nText: ${attachedPostES61.Text};`
-      + `\nText: ${attachedPostES61.highlighted};`
-      + `\nDateTime: ${attachedPostES61.DateTime};`);
+    console.log(`autor: ${attachedPostES61.autor.name};`
+      + `\ntext: ${attachedPostES61.text};`
+      + `\ntext: ${attachedPostES61.highlighted};`
+      + `\ndateTime: ${attachedPostES61.dateTime};`);
 
     console.groupEnd();
 
