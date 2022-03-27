@@ -10,183 +10,144 @@
   <!--
 Обязательное задание.
 
-Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
-Необходимо создать функцию-конструктор/класс для поста в социальной сети.
-Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
-Пост должен хранить:
-1. Автора поста (имени достаточно).
-2. Текст поста.
-3. Дату и время последнего изменения поста.
-Данные автора поста и текст поста необходимо передавать при создании
-экземпляра объекта.
-Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
-менять текст поста.
-
----
-
-Необходимо создать функцию-конструктор/класс для закрепленного поста в
-социальной сети.
-Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
-Закрепленный пост должен наследоваться от обычного поста.
-Данные автора поста и текст поста необходимо передавать при создании
-экземпляра объекта.
-Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
-будет лежать значение false (это свойство будет обозначать, будет ли наш
-закрепленный пост подсвечен).
-У экземпляров объекта закрепленного поста должен быть метод с названием
-`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
-(будет менять свойство `highlighted`).
-
----
-
-Подсказки:
-1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
-2. Обратите внимание что пост хранит "дату и время последнего изменения
-поста", это значит что если пост кто-то изменит (например вызовет какой-то
-метод, который изменит что-то в посте), дата и время последнего изменения
-поста также должна измениться.
-3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
-что-нибудь пропустить.
-4. Если непонятно условие - задайте вопрос.
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
 -->
+
+  <p class="dropdown">Привет :)</p>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div>
+
   <script>
     "use strict";
 
-    // -----------------------------------------------------------------
-    // -------------------------- ES5 ----------------------------------
-    // -----------------------------------------------------------------
+    /*
+    1. Ко всем элементам, имеющим класс "dropdown-item" добавить еще один класс
+    "super-dropdown", необходимо использовать методы forEach и querySelectorAll и
+    свойство classList у элементов.
+     */
 
-    function User(name) {
-      this.name = name;
+    // Предпочитаю 1 действие делать на 1 строке, читаемость и понимание лучше.
+    // В любом случае что мы напишем в строчку, что укажем конкретную ссылку
+    // в виде const мы оператиыную память более не используем, создали еще
+    // один указатель на уже созданный .
+    const dropdownItemNList = document.querySelectorAll('.dropdown-item');
+    dropdownItemNList.forEach(element => element.classList.add('super-dropdown'));
+
+    // Для меня привычнее и понятнее использовать for of, читаемость выше.
+    // Кажде действие на новой строке.
+    /* for (const element of dropdownItemNList) {
+      element.classList.add('super-dropdown');
+    } */
+
+    /*
+    2. У элемента с классом btn необходимо убрать класс "btn-secondary", если он
+    присутствует у этого элемента, либо добавить, если такого класса у элемента
+    не было.
+     */
+    const btnEl = document.querySelector('.btn');
+    btnEl.classList.toggle('btn-secondary');
+
+    /*
+    3. Необходимо удалить класс "dropdown-menu" у элемента, у которого
+    присутствует класс "menu".
+     */
+
+    for (const elem of document.querySelectorAll('.menu')) {
+      elem.classList.remove('dropdown-menu');
     }
 
-    function PostES5(autor, text = '') {
-      this.autor = autor;
-      this.text = text;
-      this.dateTime = new Date();
+    /*
+    4. Используя метод insertAdjacentHTML добавьте после div'a с классом
+    "dropdown" следующую разметку:
+      <a href="#">link</a>
+     */
+
+    // 'beforebegin': до самого element(до открывающего тега).
+    // 'afterbegin': сразу после открывающего тега  element(перед первым потомком).
+    // 'beforeend': сразу перед закрывающим тегом element(после последнего потомка).
+    // 'afterend': после element(после закрывающего тега).
+    for (const elem of document.querySelectorAll('div.dropdown')) {
+      elem.insertAdjacentHTML('afterend', '<a href="#">link</a>');
     }
 
-    PostES5.prototype.edit = function (text) {
-      this.text = text;
-      this.dateTime = new Date();
-    };
-
-    function AttachedPostES5(autor, text = '') {
-      PostES5.call(this, autor, text);
-      this.highlighted = false;
+    /*
+    5. У элемента с id "dropdownMenuButton" замените id на "superDropdown".
+     */
+    for (const elem of document.querySelectorAll('#dropdownMenuButton')) {
+      elem.id = 'superDropdown';
     }
 
-    AttachedPostES5.prototype = Object.create(PostES5.prototype);
-    AttachedPostES5.prototype.constructor = AttachedPostES5;
+    /*
+    6. Добавьте атрибут data-dd со значением 3 элементу у которого существует
+    атрибут "aria-labelledby" равный "dropdownMenuButton" используя dataset.
+     */
 
-    AttachedPostES5.prototype.makeTextHighlighted = function (highlighted) {
-      this.highlighted = highlighted;
-      this.dateTime = new Date();
-    };
+    /* Методы для работы с атрибутами:
 
-    // -----------------------------------------------------------------
-    // Проверка объектов
-    // -----------------------------------------------------------------
+    elem.hasAttribute(name) – проверить на наличие.
+    elem.getAttribute(name) – получить значение.
+    elem.setAttribute(name, value) – установить значение.
+    elem.removeAttribute(name) – удалить атрибут.
+    elem.attributes – это коллекция всех атрибутов. 
+    
+    Если атрибут начинается с data-, тогда нужно использовать dataset.
+    
+    Названиями полей в объекте будут имена дата-атрибутов после префикса data-. 
+    Например, если атрибут называется data-columns, 
+    то поле в объекте для этого атрибута будет называться columns*/
 
-    console.group('--- ES5 ---');
+    const elems = document.querySelectorAll('[aria-labelledby = dropdownMenuButton]');
+    for (const elem of elems) {
+      elem.dataset.dd = 3;
+    }
 
-    const user1 = new User('Andrey');
-    const postES51 = new PostES5(user1, 'Hello world!');
-    console.log(postES51);
-    console.log(`autor: ${postES51.autor.name};`
-      + `\ntext: ${postES51.text};`
-      + `\ndateTime: ${postES51.dateTime};`);
+    /*
+    7. Удалите атрибут type у элемента с классом "dropdown-toggle".
+     */
+    for (const elem of document.querySelectorAll('.dropdown-toggle')) {
+      elem.removeAttribute('type');
+    }
 
-    postES51.edit('Goodbye');
+    /*
+    8. Выведите в консоль все имеющиеся атрибуты и их значения тега у которого
+    есть все два класса btn и dropdown-toggle.
+    Вывод каждого атрибута и значений должен выглядеть следующим образом (пример):
+    Атрибут "class" содержит значение "btn btn-secondary dropdown-toggle"
+     */
 
-    console.log(`autor: ${postES51.autor.name};`
-      + `\ntext: ${postES51.text};`
-      + `\ndateTime: ${postES51.dateTime};`);
+    /* И(оба класса)
+    var list = document.getElementsByClassName("class1 class2");
+    var list = document.querySelectorAll(".class1.class2");
+    
+    ИЛИ(по крайней мере, один класс)
+    var list = document.querySelectorAll(".class1,.class2");
+    
+    XOR(один класс, но не другой)
+    var list = document.querySelectorAll(".class1:not(.class2),.class2:not(.class1)");
+    
+    NAND(не оба класса)
+    var list = document.querySelectorAll(":not(.class1),:not(.class2)");
+    
+    НИ(ни один из двух классов)
+    var list = document.querySelectorAll(":not(.class1):not(.class2)"); */
 
-    const attachedPostES51 = new AttachedPostES5(user1, 'Hello world! Attached');
-    console.log(attachedPostES51);
-    console.log(`autor: ${attachedPostES51.autor.name};`
-      + `\ntext: ${attachedPostES51.text};`
-      + `\ntext: ${attachedPostES51.highlighted};`
-      + `\ndateTime: ${attachedPostES51.dateTime};`);
-
-    attachedPostES51.edit('Goodbye AttachedPostES5');
-    attachedPostES51.makeTextHighlighted(true);
-
-    console.log(`autor: ${attachedPostES51.autor.name};`
-      + `\ntext: ${attachedPostES51.text};`
-      + `\ntext: ${attachedPostES51.highlighted};`
-      + `\ndateTime: ${attachedPostES51.dateTime};`);
-
-    console.groupEnd();
-
-    // -----------------------------------------------------------------
-    // -------------------------- ES6 ----------------------------------
-    // -----------------------------------------------------------------
-
-    class UserES6 {
-      constructor(name) {
-        this.name = name;
+    for (const elem of document.querySelectorAll('.btn.dropdown-toggle')) {
+      console.group(elem);
+      for (const elemAtt of elem.attributes) {
+        console.log(`Атрибут "${elemAtt.name}" содержит значение "${elemAtt.value}"`);
       }
+      console.groupEnd();
     }
-
-    class PostES6 {
-      constructor(autor, text = '') {
-        this.autor = autor;
-        this.text = text;
-        this.dateTime = new Date();
-      }
-
-      edit(text) {
-        this.text = text;
-        this.dateTime = new Date();
-      }
-    }
-
-    class AttachedPostES6 extends PostES6 {
-      highlighted = false;
-
-      makeTextHighlighted(highlighted) {
-        this.highlighted = highlighted;
-        this.dateTime = new Date();
-      }
-    }
-
-    // -----------------------------------------------------------------
-    // Проверка объектов
-    // -----------------------------------------------------------------
-
-    console.group('--- ES6 ---');
-
-    const user2 = new UserES6('Andrey');
-    const postES61 = new PostES6(user2, 'Hello world!');
-    console.log(postES61);
-    console.log(`autor: ${postES61.autor.name};`
-      + `\ntext: ${postES61.text};`
-      + `\ndateTime: ${postES61.dateTime};`);
-
-    postES61.edit('Goodbye');
-
-    console.log(`autor: ${postES61.autor.name};`
-      + `\ntext: ${postES61.text};`
-      + `\ndateTime: ${postES61.dateTime};`);
-
-    const attachedPostES61 = new AttachedPostES6(user1, 'Hello world! Attached');
-    console.log(attachedPostES61);
-    console.log(`autor: ${attachedPostES61.autor.name};`
-      + `\ntext: ${attachedPostES61.text};`
-      + `\ntext: ${attachedPostES61.highlighted};`
-      + `\ndateTime: ${attachedPostES61.dateTime};`);
-
-    attachedPostES61.edit('Goodbye AttachedPostES5');
-    attachedPostES61.makeTextHighlighted(true);
-
-    console.log(`autor: ${attachedPostES61.autor.name};`
-      + `\ntext: ${attachedPostES61.text};`
-      + `\ntext: ${attachedPostES61.highlighted};`
-      + `\ndateTime: ${attachedPostES61.dateTime};`);
-
-    console.groupEnd();
 
   </script>
 </body>
