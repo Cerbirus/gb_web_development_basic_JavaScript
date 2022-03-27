@@ -85,9 +85,8 @@
 
     const messageEl = document.querySelector('.message');
     document.querySelector('.messageBtn').addEventListener('click', () => {
-      messageEl.classList.add('animate__animated');
-      messageEl.classList.add('animate__fadeInLeftBig');
-      messageEl.style.setProperty('visibility', 'visible');
+      messageEl.classList.add('animate__animated', 'animate__fadeInLeftBig');
+      messageEl.style.visibility = 'visible';
     });
 
     /*
@@ -122,7 +121,7 @@
 
     // Создаем обработчик события 'click' на кнопку внутри тега 'form' 
     // для проверки заполненности всех обязательных элементов
-    document.querySelector('form button').addEventListener('click', event => {
+    document.querySelector('form').addEventListener('submit', event => {
 
       // Необходимо каждый раз получать список элементов для проверки,
       // т.к. в процессе работы могут появиться новые элементы для проверки

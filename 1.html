@@ -45,14 +45,14 @@
     1. Установите всем элементам с классом "productName" размер шрифта 24px.
      */
     for (const elem of document.querySelectorAll('.productName')) {
-      elem.style.setProperty('font-size', '24px');
+      elem.style.fontSize = '24px';
     }
 
     /*
     2. Установите всем элементам с классом "product" внешний отступ справа 50px.
      */
     for (const elem of document.querySelectorAll('.product')) {
-      elem.style.setProperty('margin-right', '50px');
+      elem.style.marginRight = '50px';
     }
 
     /*
@@ -99,7 +99,7 @@
     //    или false для того, чтобы был клонирован только указанный узел.
     const newProductEl = document.querySelector('.product').cloneNode(true);
     newProductEl.querySelector('img')
-      .setAttribute('src', 'https://picsum.photos/id/1080/200/300');
+      .src = 'https://picsum.photos/id/1080/200/300';
     newProductEl.querySelector('.productName').textContent = 'Товар 4';
 
     // replacedNode = parentNode.replaceChild(newChild, oldChild);

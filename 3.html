@@ -45,14 +45,12 @@
     const allStar = document.querySelectorAll('.stars_container i');
 
     function markStar(currentStar) {
-
       if (currentStar !== undefined
         && currentStar.classList.contains('stars_container')) {
         return;
       }
 
-      let mark = true
-        && currentStar !== undefined
+      let mark = currentStar !== undefined
         && currentStar.tagName === 'I';
 
       for (const star of allStar) {
