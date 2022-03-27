@@ -41,10 +41,11 @@
     // в виде const мы оператиыную память более не используем, создали еще
     // один указатель на уже созданный .
     const dropdownItemNList = document.querySelectorAll('.dropdown-item');
-    dropdownItemNList.forEach(element => element.classList.add('super-dropdown'));
+    dropdownItemNList.forEach(
+      element => element.classList.add('super-dropdown'));
 
     // Для меня привычнее и понятнее использовать for of, читаемость выше.
-    // Кажде действие на новой строке.
+    // Каждое действие на новой строке.
     /* for (const element of dropdownItemNList) {
       element.classList.add('super-dropdown');
     } */
@@ -83,9 +84,7 @@
     /*
     5. У элемента с id "dropdownMenuButton" замените id на "superDropdown".
      */
-    for (const elem of document.querySelectorAll('#dropdownMenuButton')) {
-      elem.id = 'superDropdown';
-    }
+    document.querySelectorAll('#dropdownMenuButton').id = 'superDropdown';
 
     /*
     6. Добавьте атрибут data-dd со значением 3 элементу у которого существует
