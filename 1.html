@@ -63,12 +63,17 @@
       H99: "Однако, программирование, в итоге, принесет свои плоды.",
     };
 
+    let activeLinkEl = document.querySelector('.active');
     const text = document.querySelector(".text");
     document.querySelector('.nav')
       .addEventListener('click', ({ target }) => {
         if (!target.classList.contains('nav-link')) {
           return;
         }
+
+        activeLinkEl.classList.remove('active');
+        target.classList.add('active');
+        activeLinkEl = target;
 
         text.textContent = panelText[target.parentElement.dataset?.text];
 
@@ -108,7 +113,11 @@
      */
 
     const inputDiv = document.querySelector('#inputDiv');
-    document.querySelector('input').addEventListener('input', ({ target }) => {
+    const inputEl = document.querySelector('input');
+    inputEl.value = Number.parseInt(getComputedStyle(inputDiv).fontSize)
+      .toString();
+
+    inputEl.addEventListener('input', ({ target }) => {
 
       inputDiv.style.fontSize = `${target.value}px`;
 
