@@ -787,30 +787,31 @@
                         `<div id="product_${id}" class="menu-cart-form-product">
                             <div>${name}</div >
                             <div class="cart-count">${1}</div>
-                            <div>${+price}</div>
-                            <div class="cart-total">${+price}</div>
+                            <div>${price}</div>
+                            <div class="cart-total">${price}</div>
                         </div>`;
 
                     this.products.set(id, {
                         name: name,
-                        price: +price,
+                        price: price,
                         count: 1,
+                        // Не полчилось сохранять путь к добавленному элементу
                         elem: cartBodyEl.querySelector(`#product_${id}`)
                     });
                 }
 
                 const activProduct = this.products.get(id);
                 this.count++;
-                this.total += +activProduct.price;
+                this.total += activProduct.price;
 
                 cartCountEl.textContent = this.count;
                 cartTotalEl.textContent = this.total;
 
-                activProduct.elem.querySelector(`.cart-count`).textContent =
-                    activProduct.count;
+                cartBodyEl.querySelector(`#product_${id} .cart-count`)
+                    .textContent = activProduct.count;
 
-                activProduct.elem.querySelector(`.cart-total`).textContent =
-                    activProduct.price * activProduct.count;
+                cartBodyEl.querySelector(`#product_${id} .cart-total`)
+                    .textContent = activProduct.price * activProduct.count;
 
             }
         }
@@ -830,17 +831,24 @@
         // не понял как поймать кнопку и все ее элементы более проще
         // пришлось все содержимое проверять        
         productsEl.addEventListener('click', ({ target }) => {
-            if (!target.classList.contains('products-item-cart-btn')
-                && !target.offsetParent?.
+            if (!target.closest('.products-item-cart-btn')
+                /* && !target.offsetParent?.
                     classList.contains('products-item-cart-btn')
                 && !target.parentElement?.
                     classList.contains('products-item-cart-btn')
                 && !target.parentElement?.parentElement?.
-                    classList.contains('products-item-cart-btn')) {
+                    classList.contains('products-item-cart-btn') */
+            ) {
                 return;
             }
 
-            if (target.classList.contains('products-item-cart-btn'))
+            const productEl = target.closest('.products-item')
+            cartObj.addToCart(
+                +productEl.dataset.id,
+                productEl.dataset.name,
+                +productEl.dataset.price);
+
+            /* if (target.classList.contains('products-item-cart-btn'))
                 cartObj.addToCart(
                     target.offsetParent.dataset.id,
                     target.offsetParent.dataset.name,
@@ -865,7 +873,7 @@
                     target.parentElement.parentElement.offsetParent.
                         dataset.name,
                     target.parentElement.parentElement.offsetParent.
-                        dataset.price);
+                        dataset.price); */
         })
 
     </script>
