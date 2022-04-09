@@ -1754,7 +1754,6 @@ ul {
 }
 
 .menu-cart-form {
-  
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -1766,25 +1765,36 @@ ul {
   background-color: beige;
   box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
 
-  z-index: 20;
+  z-index: 30;
   right: 0;
   top: 60px;
 
   &-header {
     display: grid;
     grid-template-columns: 50% 20% 15% 15%;
+
+    border-bottom: 1px solid black;
   }
 
-  &-footer{
+  &-body {
+    display: grid;
+  }
+
+  &-footer {
     display: grid;
     grid-template-columns: 85% 15%;
-    grid-template-rows: 20px;
-    
-    margin-top: 20px;
+    margin-top: 5px;
 
-    & span:first-child{
+    & span:first-child {
       text-align: right;
       margin-right: 5px;
     }
+  }
+
+  &-product {
+    display: grid;
+    grid-template-columns: 50% 20% 15% 15%;
+    align-items: center;
+    border-bottom: 1px dotted black;
   }
 }
