@@ -779,23 +779,21 @@
             total = 0;
 
             addToCart(id, name, price) {
-
                 if (this.products.has(id))
                     this.products.get(id).count++;
                 else {
-                    cartBodyEl.innerHTML +=
+                    cartBodyEl.insertAdjacentHTML('beforeend',
                         `<div id="product_${id}" class="menu-cart-form-product">
                             <div>${name}</div >
                             <div class="cart-count">${1}</div>
                             <div>${price}</div>
                             <div class="cart-total">${price}</div>
-                        </div>`;
+                        </div>`);
 
                     this.products.set(id, {
                         name: name,
                         price: price,
                         count: 1,
-                        // Не полчилось сохранять путь к добавленному элементу
                         elem: cartBodyEl.querySelector(`#product_${id}`)
                     });
                 }
@@ -807,10 +805,10 @@
                 cartCountEl.textContent = this.count;
                 cartTotalEl.textContent = this.total;
 
-                cartBodyEl.querySelector(`#product_${id} .cart-count`)
+                activProduct.elem.querySelector(`.cart-count`)
                     .textContent = activProduct.count;
 
-                cartBodyEl.querySelector(`#product_${id} .cart-total`)
+                activProduct.elem.querySelector(`.cart-total`)
                     .textContent = activProduct.price * activProduct.count;
 
             }
@@ -842,7 +840,7 @@
                 return;
             }
 
-            const productEl = target.closest('.products-item')
+            const productEl = target.closest('.products-item');
             cartObj.addToCart(
                 +productEl.dataset.id,
                 productEl.dataset.name,
